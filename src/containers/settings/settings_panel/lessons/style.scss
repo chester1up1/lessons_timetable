@@ -1,0 +1,26 @@
+.lessons{
+    height: 100%;
+    .title{
+        font-size: larger;
+        text-align: center;
+    }
+    .add_lesson{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .item{
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    .input-group{
+        max-width: 300px;
+    }
+    img{
+        cursor: pointer;
+    }
+    .lessons{
+        overflow-y: auto;
+        // max-height: calc(100% - 1000px);
+    }
+}

@@ -1,0 +1,41 @@
+.teachers{
+    height: 100%;
+    .title{
+        font-size: larger;
+        text-align: center;
+    }
+    .add_teachers{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .item{
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    .input-group{
+        max-width: 300px;
+    }
+    img{
+        cursor: pointer;
+    }
+    .teachers_table{
+        overflow-y: auto;
+        // max-height: calc(100% - 1000px);
+    }
+    .teachers_info{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .lesson_item{
+        display: flex;
+        flex-direction: row;
+    }
+    .add{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+}

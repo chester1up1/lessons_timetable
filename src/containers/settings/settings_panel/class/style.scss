@@ -1,0 +1,33 @@
+.Class{
+    .title{
+        font-size: larger;
+        text-align: center;
+        
+    }
+    .input-group-text{
+        min-width: 150px;
+    }
+    .input-group{
+        max-width: 300px;
+    }
+    .add_class{
+        display: flex;
+        flex-direction: column;
+        .class_info{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
+    .item{
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    img{
+        cursor: pointer;
+    }
+    .class_table{
+        overflow-y: auto;
+        // max-height: calc(100% - 1000px);
+    }
+}
