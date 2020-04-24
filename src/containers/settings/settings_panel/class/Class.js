@@ -83,7 +83,7 @@ function Class(props) {
 									<td>{item.class_name}</td>
 									<td>{item.teacher}</td>
 									<td>{item.count_students}</td>
-									<td><img className='times_solid' src={times_solid} alt="delete" onClick={()=>DeleteClass(item.class_name)} /></td>
+									<td><img className='times_solid' src={times_solid} alt="delete" onClick={()=>DeleteClass(item.class_name )} /></td>
 								</tr>
 							)
 						})}
