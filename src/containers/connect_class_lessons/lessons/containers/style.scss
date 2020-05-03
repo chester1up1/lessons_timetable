@@ -1,0 +1,11 @@
+.Lesson{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .time{
+        width: 135px;
+        display: flex;
+        flex-direction: row;
+    }
+}

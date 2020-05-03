@@ -1,0 +1,101 @@
+.ConnectClassLessons{
+    .def{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        display: flex;
+        flex-direction: row;
+        
+        border-bottom: rgb(148, 77, 230) 5px solid; 
+        p{
+            
+            margin-top: 10px;
+            font-size: 128px;
+            margin-bottom: 10px;
+            line-height: 145px;
+            margin-left: 20px;
+            text-shadow: black 2px 2px 0, black -2px -2px 0, 
+            black -2px 2px 0, black 2px -2px 0;
+            color: white;
+        }
+    }
+    .Lessons_connect{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 100%;
+        .class_lessons{
+            margin-left: 4%;
+            width: 50%;
+            .title{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                font-size: 37px;
+                border-bottom: rgb(148, 77, 230) 5px solid; 
+            }
+            .lessons_list{
+                min-height: 94.44px;
+                border-right: rgb(148, 77, 230) 5px solid; 
+                .top_pannel{
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    border-bottom:  rgb(148, 77, 230) 2.5px solid; ;
+                    .use_time{
+                        width: 48.75%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-around;
+                        align-items: center;
+                        border-right:  rgb(148, 77, 230) 2.5px solid; ;
+                        padding-bottom: 5px;
+                        p{
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin-bottom: 0;
+                        }
+                    }
+                    .all_time{
+                        width: 48.75%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-around;
+                        align-items: center;
+                        input{
+                            width: 40%;
+                            margin-top: 5px;
+                            margin-bottom: 5px;
+                            border-top: none;
+                            border-left: none;
+                            border-right: none;
+                            border-bottom: 1px solid #7F25D9;
+                            text-align: center;
+                        }
+                        p{
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+        .all_lessons{
+            width: 38%;
+            .title{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                font-size: 37px;
+                border-bottom: rgb(148, 77, 230) 5px solid; 
+            }
+        }
+        
+    }
+  
+}

@@ -12,7 +12,7 @@ function Settings_router(props) {
       <Route path='/teachers' component={Teachers}/>
       <Route path='/classrooms' component={Classrooms}/>
       <Route path='/lessons' component={Lessons}/>
-      <Route exact path='/' component={Classrooms}/>
+      <Route path='/' component={Class}/>
     </Switch>
   );
 }

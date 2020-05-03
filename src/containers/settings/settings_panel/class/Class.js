@@ -28,7 +28,8 @@ function Class(props) {
 			class_name : class_name,
 			classroom : classroom,
 			count_students : count_students,
-			teacher : teacher
+			teacher : teacher,
+			lessons : []
 		}
 		AddClass(data, class_name);
 	}

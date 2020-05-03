@@ -1,8 +1,13 @@
 import React, { useEffect , useState } from 'react';
 import { connect } from 'react-redux';
 import Settings from '../settings/Settings';
-import { GoClassrooms, GoLessons, GoTeachers, GoClass } from './actions';
-
+import { GoClassrooms, GoLessons, GoTeachers, GoClass,  } from './actions';
+import  './style.scss'
+import Main_router from './main_router';
+import users_solid2 from '../../img/users_solid2.svg';
+import arrows_alt_h_solid2 from '../../img/arrows_alt_h_solid2.svg';
+import clipboard_list_solid_white from '../../img/clipboard_list_solid_white.svg';
+import { Link } from 'react-router-dom';
 
 function Main(props) {
   const {GoClassrooms, GoLessons, GoTeachers, GoClass} = props;
@@ -11,8 +16,20 @@ function Main(props) {
   GoTeachers();
   GoClass();
   return (
-    <div>
-      <Settings/>
+    <div className='main'>
+      <div className='left_panel'>
+        <Settings/>
+        <Link to='/class-lessons'> 
+          <div className='item_class_lessons'>
+            <img className='users_solid' src={users_solid2} alt="" />
+            <img className='arrows_alt_h_solid' src={arrows_alt_h_solid2} alt=""  />
+            <img className='clipboard_list_solid' src={clipboard_list_solid_white} alt="" />
+          </div>
+        </Link>
+      </div>
+      <div className='main_router'>
+        <Main_router/>
+      </div>
     </div>
   );
 }

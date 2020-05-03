@@ -1,0 +1,39 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    .left_panel{
+        background-color: #7F25D9;
+        width: 12%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        img{
+            color: blanchedalmond;
+            width: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .item_class_lessons{
+            display: flex;
+            flex-direction: row;
+            margin-left: 2px;
+            margin-right: 2px;
+            .arrows_alt_h_solid{
+                width: 30px;
+            }
+            .users_solid{
+                width: 40px;
+            }
+            .clipboard_list_solid{
+                width: 30px;
+            }
+            
+        }
+    }
+    .main_router{
+        width: 88%;
+    }
+}

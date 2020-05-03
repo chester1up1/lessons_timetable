@@ -9,7 +9,10 @@ import { GetClassroomsFirebase,
          PostTeachers, 
          PostClass, 
          GetClassFirebase,
-         DeleteClassFire,} from "../../firebase/actions";
+         DeleteClassFire,
+         ChangeClassLessonsAdd,
+         ChangeClassTime,
+} from "../../firebase/actions";
 
 export function GoClassrooms() {
   return async (dispatch) => {
@@ -146,4 +149,56 @@ export function DeleteClass(id) {
     }
 }
 
+export function AddClassLessons(result,id) {
+  return async (dispatch) => {
+    try {
+      ChangeClassLessonsAdd(result,id);
+      dispatch({type: 'CHANGE_CLASS', data: result});
+    } catch (error) {
+      console.log("TCL: getUsers -> error", error)
+      }
+    }
+}
 
+export const FilterLessons = (all_lessons, class_lessons) => {
+  return () =>{
+    let data = {
+          data_class_lessons: class_lessons,
+          data_all_lessons: all_lessons.map(item=> item.lesson_name)
+        }
+      data.data_class_lessons.forEach(element => {
+        data = {...data, data_all_lessons: data.data_all_lessons.filter(item=>item!==element)}
+    });
+    return data
+  }
+}
+
+export function ChangeLessonToClass(result,id) {
+  return async (dispatch) => {
+    try {
+      let result_ = {lessons: result, id: id}
+      dispatch({type: 'CHANGE_LESSON_TO_CLASS', data: result_});
+    } catch (error) {
+      console.log("TCL: getUsers -> error", error)
+      }
+    }
+}
+
+export function AddClassTime(result,id) {
+  return async (dispatch) => {
+    try {
+      ChangeClassTime(result,id);
+      let result_ = {time: result, id: id}
+      dispatch({type: 'CHANGE_CLASS_TIME', data: result_});
+    } catch (error) {
+      console.log("TCL: getUsers -> error", error)
+      }
+    }
+}
+// export function AddTimeToClass(result, id, lesson_name, time) {
+//   let result_ = result.map(item=>{
+//     if(item==lesson_name){
+//       state.items.filter(item=>item.class_name!==action.data),
+//     }
+//   })
+// }
