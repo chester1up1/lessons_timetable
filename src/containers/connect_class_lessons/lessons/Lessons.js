@@ -1,16 +1,18 @@
 import React, { useEffect , useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { connect } from 'react-redux';
-import { AddClassLessons, FilterLessons, ChangeLessonToClass, AddClassTime } from '../../main/actions';
+import { AddClassLessons, FilterLessons, ChangeLessonToClass, AddClassTime, AddClassUsedTime,  } from '../../main/actions';
 import Lesson from './containers/Lesson';
 import { InputGroup, InputGroupText, InputGroupAddon, Input } from 'reactstrap';
 
 function Lessons(props) {
-  const {lessons, AddClassLessons, FilterLessons, school_class, ChangeLessonToClass, AddClassTime} = props;
+  const {lessons, AddClassLessons, FilterLessons, school_class, ChangeLessonToClass, AddClassTime, AddClassUsedTime} = props;
   // const [state_class_lessons, SetClassLessons] = useState([]);
   let state_class_lessons = [];
   const [class_time, SetClassTime] = useState('');
+  const [load, setLoad] = useState(false);
   const [state_ , setState_] = useState({
+    load:false,
     items: [],
     selected: []
   });
@@ -18,13 +20,17 @@ function Lessons(props) {
     droppable: 'items',
     droppable2: 'selected'
   });
-
+  useEffect(()=>{
+    console.log('state_.selected',state_.selected)
+    AddClassUsedTime(state_.selected,props.match.params.number)
+  },[props.match.params.number,state_.selected.length])
   useEffect(() => {
    ChangeLessons();
    school_class.forEach(element => {
     if(element.class_name==props.match.params.number){
       SetClassTime(element.class_time)
     }
+    
   })
   },[lessons, props.match.params.number, school_class,]);
 
@@ -48,22 +54,20 @@ function Lessons(props) {
     let data_selected = [];
     if(state_class_lessons.length!==0){
       state_class_lessons.data_all_lessons.forEach(item => {
-            data = [...data,{id:`item-${id}`,content:item}];
+            data = [...data,{id:`item-${id}`,content:item, time: 1}];
             id++
           });
       state_class_lessons.data_class_lessons.forEach(item => {
-           data_selected = [...data_selected,{id:`item-${id}`,content:item}];
+           data_selected = [...data_selected,{id:`item-${id}`,content: item.name, time: item.time}];
             id++
           });
     }
     
-    setState_({...state_, items: data, selected: data_selected});
+    setState_({...state_, items: data, selected: data_selected, load: true});
   }
-  
   const ChangeLessons = async() =>{
     await FindLessons();
     await TryFilterLessons();
-    // console.log('state_class_lessons',state_class_lessons)
   }
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -148,14 +152,15 @@ function Lessons(props) {
         });
         // if(source.droppableId === 'droppable'){
           let data = [];
-          result.droppable2.map(item=> data=[...data,item.content])
+          result.droppable2.map(item=> data=[...data,{name: item.content, time: item.time*1}])
           // result.droppable2.map(item=> data=[...data,{lesson_name: item.content, lessons_time: 0}])
           if(data!==[]){
+            console.log('data!->',data)
             AddClassLessons(data, props.match.params.number)
             ChangeLessonToClass(data, props.match.params.number)
             
           }
-          console.log('HERE--->',source.droppableId,data, props.match.params.number)
+          // console.log('HERE--->',source.droppableId,data, props.match.params.number)
           
         // }
     }
@@ -170,8 +175,10 @@ function Lessons(props) {
             <div className='lessons_list'>
               <div className='top_pannel'>
                 <div className='use_time'>
-                  <p className='time'>0</p>
-                  <p className='text'>use time</p>
+                  <p className='time'>{
+                    school_class.map(item=>item.class_name==props.match.params.number?item.used_time:[])
+                  }</p>
+                  <p className='text'>used time</p>
                 </div>
                 <div className='all_time'>
                   <p className='text'>all time</p>
@@ -183,7 +190,7 @@ function Lessons(props) {
                     <div
                         ref={provided.innerRef}
                         style={getListStyle(snapshot.isDraggingOver)}>
-                        {state_.selected.map((item, index) => (
+                        {state_.selected.map((item, index) =>(
                             <Draggable
                                 key={item.id}
                                 draggableId={item.id}
@@ -197,7 +204,12 @@ function Lessons(props) {
                                             snapshot.isDragging,
                                             provided.draggableProps.style
                                         )}>
-                                        <Lesson key={item.content} lesson={item.content}/>
+                                        <Lesson key={item.content} lesson={item.content} 
+                                                                   all_lessons={state_.selected} 
+                                                                   id={props.match.params.number}
+                                                                   time={item.time}
+                                                                   all_time={class_time}
+                                                                  />
                                     </div>
                                 )}
                             </Draggable>
@@ -257,7 +269,8 @@ const mapDispatchToProps = {
   AddClassLessons,
   FilterLessons,
   ChangeLessonToClass,
-  AddClassTime
+  AddClassTime,
+  AddClassUsedTime
 }
      
 export default connect(mapStateToProps, mapDispatchToProps)(Lessons)

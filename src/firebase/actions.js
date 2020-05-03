@@ -113,4 +113,21 @@ export const ChangeClassTime = (data, id) => {
   });
 }
 
+export const ChangeClassUsedTime = (data, id) => {
+  let classRef = database.collection('class').doc(id);
+  let transaction = database.runTransaction(t => {
+    return t.get(classRef)
+      .then(doc => {
+        // Add one person to the city population.
+        // Note: this could be done without a transaction
+        //       by updating the population using FieldValue.increment()
+        t.update(classRef, {use_time: data});
+      });
+  }).then(result => {
+    console.log('Transaction success!');
+  }).catch(err => {
+    console.log('Transaction failure:', err);
+  });
+}
+
 

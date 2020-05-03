@@ -41,6 +41,18 @@ const school_class = (state = defaultState, action) => {
           load:true,
           items: state.items.map(item=>item.class_name==action.data.id?{...item, class_time:action.data.time}:item),
         };
+      case 'CHANGE_LESSON_TIME':
+        return {
+          ...state,
+          load:true,
+          items: state.items.map(item=>item.class_name==action.data.id?{...item, lessons:action.data.lessons}:item),
+        };
+        case 'CHANGE_CLASS_USED_TIME':
+        return {
+          ...state,
+          load:true,
+          items: state.items.map(item=>item.class_name==action.data.id?{...item, used_time:action.data.used_time}:item),
+        };
     default:
       return state
   }

@@ -12,6 +12,7 @@ import { GetClassroomsFirebase,
          DeleteClassFire,
          ChangeClassLessonsAdd,
          ChangeClassTime,
+         ChangeClassUsedTime
 } from "../../firebase/actions";
 
 export function GoClassrooms() {
@@ -167,8 +168,9 @@ export const FilterLessons = (all_lessons, class_lessons) => {
           data_all_lessons: all_lessons.map(item=> item.lesson_name)
         }
       data.data_class_lessons.forEach(element => {
-        data = {...data, data_all_lessons: data.data_all_lessons.filter(item=>item!==element)}
+        data = {...data, data_all_lessons: data.data_all_lessons.filter(item=>item!==element.name)}
     });
+    console.log('data----->',data)
     return data
   }
 }
@@ -188,17 +190,80 @@ export function AddClassTime(result,id) {
   return async (dispatch) => {
     try {
       ChangeClassTime(result,id);
-      let result_ = {time: result, id: id}
+      let result_ = {time: result*1, id: id}
       dispatch({type: 'CHANGE_CLASS_TIME', data: result_});
     } catch (error) {
       console.log("TCL: getUsers -> error", error)
       }
     }
 }
-// export function AddTimeToClass(result, id, lesson_name, time) {
-//   let result_ = result.map(item=>{
-//     if(item==lesson_name){
-//       state.items.filter(item=>item.class_name!==action.data),
-//     }
-//   })
-// }
+
+export function AddTimeToLesson(value, lesson, all_lessons, time, id, all_time) {
+  
+  return async (dispatch) => {
+    console.log(value, lesson, all_lessons)
+    let new_time = 0;
+    let new_data = [];
+    let result_new ={}
+    try {
+      all_lessons.forEach(element => {
+        new_time = new_time + element.time
+      });
+    } 
+    catch (error) {
+      
+    }
+    finally{
+      switch (value) {
+        case 'plus':
+          if(new_time + 1 <= all_time){
+            new_data = all_lessons.map(item=> item.content == lesson?{name: item.content, time: item.time+1}:{name: item.content, time: item.time});
+            result_new = {used_time: new_time+1, id:id}
+            let result_ = {lessons: new_data, id: id}
+            ChangeClassLessonsAdd(result_.lessons,id)
+            dispatch({type: 'CHANGE_LESSON_TIME', data: result_});
+            ChangeClassUsedTime(result_new.new_time,id);
+            dispatch({type: 'CHANGE_CLASS_USED_TIME', data: result_new});
+          }
+          break;
+        case 'minus':
+          if(time > 0){
+            new_data = all_lessons.map(item=> item.content == lesson?{name: item.content, time: item.time-1}:{name: item.content, time: item.time});
+            result_new = {used_time: new_time-1, id:id}
+            let result_ = {lessons: new_data, id: id}
+            ChangeClassLessonsAdd(result_.lessons,id)
+            dispatch({type: 'CHANGE_LESSON_TIME', data: result_});
+            ChangeClassUsedTime(result_new.new_time,id);
+            dispatch({type: 'CHANGE_CLASS_USED_TIME', data: result_new});
+          }
+          break;
+        default:
+          new_data = all_lessons.map(item=> item.content == lesson?{name: item.content, time: item.time}:{name: item.content, time: item.time});
+          result_new = {used_time: new_time, id:id}
+          let result_ = {lessons: new_data, id: id}
+          ChangeClassLessonsAdd(result_.lessons,id)
+          dispatch({type: 'CHANGE_LESSON_TIME', data: result_});
+          ChangeClassUsedTime(result_new.new_time,id);
+          dispatch({type: 'CHANGE_CLASS_USED_TIME', data: result_new});
+          break;
+      } 
+    }
+  }
+}
+
+export function AddClassUsedTime(result,id) {
+  return async (dispatch) => {
+    try {
+      let new_time = 0;
+      result.forEach(element => {
+        new_time = new_time + element.time*1
+      });
+      let result_ = {used_time: new_time, id:id}
+      ChangeClassUsedTime(result_.new_time,id);
+      dispatch({type: 'CHANGE_CLASS_USED_TIME', data: result_});
+    } catch (error) {
+      console.log("TCL: getUsers -> error", error)
+      }
+    }
+}
+

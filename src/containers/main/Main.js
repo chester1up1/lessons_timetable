@@ -6,7 +6,9 @@ import  './style.scss'
 import Main_router from './main_router';
 import users_solid2 from '../../img/users_solid2.svg';
 import arrows_alt_h_solid2 from '../../img/arrows_alt_h_solid2.svg';
+import chalkboard_teacher_solid2 from '../../img/chalkboard_teacher_solid2.svg';
 import clipboard_list_solid_white from '../../img/clipboard_list_solid_white.svg';
+
 import { Link } from 'react-router-dom';
 
 function Main(props) {
@@ -24,6 +26,13 @@ function Main(props) {
             <img className='users_solid' src={users_solid2} alt="" />
             <img className='arrows_alt_h_solid' src={arrows_alt_h_solid2} alt=""  />
             <img className='clipboard_list_solid' src={clipboard_list_solid_white} alt="" />
+          </div>
+        </Link>
+        <Link to='/class-lessons'> 
+          <div className='item_class_lessons'>
+            <img className='users_solid' src={users_solid2} alt="" />
+            <img className='arrows_alt_h_solid' src={arrows_alt_h_solid2} alt=""  />
+            <img className='chalkboard_teacher_solid' src={chalkboard_teacher_solid2} alt="" />
           </div>
         </Link>
       </div>
