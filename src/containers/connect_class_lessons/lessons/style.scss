@@ -24,9 +24,23 @@
         flex-direction: row;
         align-items: flex-start;
         width: 100%;
+        
         .class_lessons{
             margin-left: 4%;
             width: 50%;
+            .lessons_list::-webkit-scrollbar  {
+                width: 5px;
+                background-color: white;
+            }
+            .lessons_list::-webkit-scrollbar-thumb  {
+                background-color: rgba(148, 77, 230, 0.438);
+            }
+            .lessons_list{
+                overflow-y: auto;
+                height: 80vh;
+                padding-right: 5px;
+                padding-top:  5px;
+            }
             .title{
                 display: flex;
                 flex-direction: column;
@@ -84,7 +98,19 @@
                 }
             }
         }
+       
         .all_lessons{
+            .lessons_list{
+                overflow-y: auto;
+                height: 80vh;
+            }
+            .lessons_list::-webkit-scrollbar  {
+                width: 5px;
+                background-color: white;
+            }
+            .lessons_list::-webkit-scrollbar-thumb  {
+                background-color: rgba(148, 77, 230, 0.438);
+            }
             width: 38%;
             .title{
                 display: flex;

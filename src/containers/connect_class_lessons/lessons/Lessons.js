@@ -54,11 +54,11 @@ function Lessons(props) {
     let data_selected = [];
     if(state_class_lessons.length!==0){
       state_class_lessons.data_all_lessons.forEach(item => {
-            data = [...data,{id:`item-${id}`,content:item, time: 1}];
+            data = [...data,{id:`item-${id}`,content:item, time: 1, teacher: ''}];
             id++
           });
       state_class_lessons.data_class_lessons.forEach(item => {
-           data_selected = [...data_selected,{id:`item-${id}`,content: item.name, time: item.time}];
+           data_selected = [...data_selected,{id:`item-${id}`,content: item.name, time: item.time , teacher: item.teacher}];
             id++
           });
     }
@@ -92,8 +92,7 @@ function Lessons(props) {
     background: isDraggingOver ? "" : "white",
     padding: grid,
     width: '100%',
-    height:300,
-
+    height: '100%',
   });
   const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
@@ -138,7 +137,7 @@ function Lessons(props) {
 
     //різні  
     } else {
-     
+     console.log('state[sInd], state[dInd], source, destination',source.droppableId,destination.droppableId,source,destination)
         const result = move(
             getList(source.droppableId),
             getList(destination.droppableId),
@@ -152,7 +151,7 @@ function Lessons(props) {
         });
         // if(source.droppableId === 'droppable'){
           let data = [];
-          result.droppable2.map(item=> data=[...data,{name: item.content, time: item.time*1}])
+          result.droppable2.map(item=> data=[...data,{name: item.content, time: item.time*1 , teacher: item.teacher}])
           // result.droppable2.map(item=> data=[...data,{lesson_name: item.content, lessons_time: 0}])
           if(data!==[]){
             console.log('data!->',data)

@@ -12,6 +12,7 @@ const classrooms = (state = defaultState, action) => {
         items:[...action.data]
       };
     case 'ADD_CLASSROOM':
+      console.log('action.data->',action.data)
       return {
         ...state,
         load:true,

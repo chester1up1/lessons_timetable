@@ -1,0 +1,74 @@
+.ConnectLessonsTeachers {
+  display: flex;
+  flex-direction: row;
+  // align-items: flex-start;
+  margin: 20px;
+  width: 88%;
+  .def {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+
+    border-bottom: rgb(148, 77, 230) 5px solid;
+    p {
+      margin-top: 10px;
+      font-size: 128px;
+      margin-bottom: 10px;
+      line-height: 145px;
+      margin-left: 20px;
+      text-shadow: black 2px 2px 0, black -2px -2px 0, black -2px 2px 0,
+        black 2px -2px 0;
+      color: white;
+    }
+  }
+  .Class_connect {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    align-self: flex-start;
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      font-size: 37px;
+      border-bottom: rgb(148, 77, 230) 5px solid;
+    }
+    .class_items::-webkit-scrollbar {
+      width: 5px;
+      background-color: white;
+    }
+    .class_items::-webkit-scrollbar-thumb {
+      background-color: rgba(148, 77, 230, 0.438);
+    }
+    .class_items {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-right: rgb(148, 77, 230) 5px solid;
+      overflow-y: auto;
+      height: 80vh;
+
+      .item {
+        font-size: 21px;
+        cursor: pointer;
+      }
+      .link {
+        color: black;
+      }
+      .link:hover {
+        text-decoration: none;
+        .item_color {
+          color: rgb(148, 77, 230);
+        }
+      }
+    }
+  }
+}

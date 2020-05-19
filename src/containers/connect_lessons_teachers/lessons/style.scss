@@ -1,0 +1,23 @@
+.ConnectLessonsTeachersPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .class_lessons {
+    margin-left: 4%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      font-size: 37px;
+      border-bottom: rgb(148, 77, 230) 5px solid;
+    }
+    .lessons {
+      margin-top: 10px;
+    }
+  }
+}
