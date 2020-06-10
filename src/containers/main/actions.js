@@ -152,6 +152,7 @@ export function DeleteClass(id) {
 }
 
 export function AddClassLessons(result, id) {
+  console.log("result", result);
   return async (dispatch) => {
     try {
       ChangeClassLessonsAdd(result, id);
@@ -361,12 +362,14 @@ export function AddClassUsedTime(result, id) {
   };
 }
 export const getClassLessons = (all_class, class_name) => {
+  console.log("all_class", all_class);
   return () => {
     console.log("all_class", all_class, "class_name", class_name);
     let data;
     try {
       all_class.forEach((item) => {
         if (item.class_name == class_name) {
+          console.log("HERE~~~>", item.lessons);
           data = item.lessons;
         }
       });

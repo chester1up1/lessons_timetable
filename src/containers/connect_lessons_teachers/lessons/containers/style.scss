@@ -1,3 +1,6 @@
+.lesson_box:active {
+  border: 5px solid rgb(179, 141, 221);
+}
 .lesson_box {
   display: flex;
   flex-direction: column;
@@ -26,6 +29,38 @@
     select {
       width: 100%;
       text-overflow: ellipsis;
+    }
+  }
+}
+.teachers_ {
+  width: 40%;
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 37px;
+    border-bottom: rgb(148, 77, 230) 5px solid;
+  }
+  .all_teachers {
+    .teacher {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      .top {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        .name {
+          margin-right: 10px;
+        }
+      }
+      .bot {
+        display: flex;
+      }
     }
   }
 }
