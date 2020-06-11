@@ -16,6 +16,7 @@ export function ChangeTeacher(
   lesson_time,
   lessons
 ) {
+  console.log("teachers", teachers);
   return async (dispatch) => {
     let time = 0;
     let new_data_lesson_class = [];
@@ -61,8 +62,8 @@ export function ChangeTeacher(
       }
     } catch (error) {
     } finally {
-      console.log("new_data_lesson_class", new_data_lesson_class);
-      console.log("new_data_teacher", new_data_teacher);
+      // console.log("new_data_lesson_class", new_data_lesson_class);
+      // console.log("new_data_teacher", new_data_teacher);
     }
   };
 }
@@ -75,16 +76,16 @@ export function ChangeTeacherToTeacher(
   lesson_time,
   lessons
 ) {
-  console.log(
-    "  lesson,teacher_new, teacher_prev, class_,teachers,lesson_time,lessons",
-    lesson,
-    teacher_new,
-    teacher_prev,
-    class_,
-    teachers,
-    lesson_time,
-    lessons
-  );
+  // console.log(
+  //   "  lesson,teacher_new, teacher_prev, class_,teachers,lesson_time,lessons",
+  //   lesson,
+  //   teacher_new,
+  //   teacher_prev,
+  //   class_,
+  //   teachers,
+  //   lesson_time,
+  //   lessons
+  // );
   return async (dispatch) => {
     let time = 0;
     let new_data_lesson_class = [];
@@ -141,8 +142,8 @@ export function ChangeTeacherToTeacher(
       }
     } catch (error) {
     } finally {
-      console.log("new_data_lesson_class", new_data_lesson_class);
-      console.log("new_data_teacher", new_data_teacher);
+      // console.log("new_data_lesson_class", new_data_lesson_class);
+      // console.log("new_data_teacher", new_data_teacher);
     }
   };
 }

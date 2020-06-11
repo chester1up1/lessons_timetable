@@ -14,6 +14,8 @@ import {
   ChangeClassLessonsAdd,
   ChangeClassTime,
   ChangeClassUsedTime,
+  GetTimetable,
+  GetLessonsTimetable,
 } from "../../firebase/actions";
 
 export function GoClassrooms() {
@@ -21,6 +23,30 @@ export function GoClassrooms() {
     try {
       let result = GetClassroomsFirebase().then((data) => {
         dispatch({ type: "GET_CLASSROOM", data: data });
+      });
+    } catch (error) {
+      console.log("TCL: getUsers -> error", error);
+    }
+  };
+}
+
+export function GoLessonsTimetable() {
+  return async (dispatch) => {
+    try {
+      let result = GetLessonsTimetable().then((data) => {
+        dispatch({ type: "GET_LESSONSTIEMTABLE", data: data });
+      });
+    } catch (error) {
+      console.log("TCL: getUsers -> error", error);
+    }
+  };
+}
+
+export function GoTimetable() {
+  return async (dispatch) => {
+    try {
+      let result = GetTimetable().then((data) => {
+        dispatch({ type: "GET_TIEMTABLE", data: data });
       });
     } catch (error) {
       console.log("TCL: getUsers -> error", error);
@@ -267,6 +293,7 @@ export function ChangeLessonToClass(result, id) {
 }
 
 export function AddClassTime(result, id) {
+  console.log("result", result);
   return async (dispatch) => {
     try {
       ChangeClassTime(result, id);
@@ -302,8 +329,12 @@ export function AddTimeToLesson(
           if (new_time + 1 <= all_time) {
             new_data = all_lessons.map((item) =>
               item.content == lesson
-                ? { name: item.content, time: item.time + 1 }
-                : { name: item.content, time: item.time }
+                ? {
+                    name: item.content,
+                    time: item.time + 1,
+                    teacher: item.teacher,
+                  }
+                : { name: item.content, time: item.time, teacher: item.teacher }
             );
             result_new = { used_time: new_time + 1, id: id };
             let result_ = { lessons: new_data, id: id };
@@ -362,20 +393,20 @@ export function AddClassUsedTime(result, id) {
   };
 }
 export const getClassLessons = (all_class, class_name) => {
-  console.log("all_class", all_class);
+  // console.log("all_class", all_class);
   return () => {
-    console.log("all_class", all_class, "class_name", class_name);
+    // console.log("all_class", all_class, "class_name", class_name);
     let data;
     try {
       all_class.forEach((item) => {
         if (item.class_name == class_name) {
-          console.log("HERE~~~>", item.lessons);
+          // console.log("HERE~~~>", item.lessons);
           data = item.lessons;
         }
       });
     } catch (error) {
     } finally {
-      console.log("data-->", data);
+      // console.log("data-->", data);
       return data;
     }
   };

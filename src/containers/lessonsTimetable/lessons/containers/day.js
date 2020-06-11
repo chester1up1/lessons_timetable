@@ -1,23 +1,30 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
+import "./style.scss";
+import Lesson from "./lesson";
 
-export const Day = () => {
+export const Day = (props) => {
+  const { name_day, class_lessons, class_, all_class } = props;
+  let lessons = class_lessons;
+  const nmb = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
-    <div>
-      <div>Day</div>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-      <div>6</div>
-      <div>7</div>
-      <div>8</div>
+    <div className="day  col-md-4 col-4">
+      <div className="name">{name_day}</div>
+      {nmb.map((item) => (
+        <Lesson
+          lessons={lessons}
+          number={item}
+          name_day={name_day}
+          class_={class_}
+          id_={item}
+          all_class={all_class}
+        />
+      ))}
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({ all_class: state.timetable.items });
 
 const mapDispatchToProps = {};
 

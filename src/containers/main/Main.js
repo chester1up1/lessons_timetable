@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Settings from "../settings/Settings";
-import { GoClassrooms, GoLessons, GoTeachers, GoClass } from "./actions";
+import {
+  GoClassrooms,
+  GoLessons,
+  GoTeachers,
+  GoClass,
+  GoTimetable,
+} from "./actions";
 import "./style.scss";
 import Main_router from "./main_router";
 import users_solid2 from "../../img/users_solid2.svg";
@@ -13,11 +19,14 @@ import table_solid from "../../img/table_solid.svg";
 import { Link } from "react-router-dom";
 
 function Main(props) {
-  const { GoClassrooms, GoLessons, GoTeachers, GoClass } = props;
+  const { GoClassrooms, GoLessons, GoTeachers, GoClass, GoTimetable } = props;
+  ///Контроллер
   GoClassrooms();
   GoLessons();
   GoTeachers();
   GoClass();
+  GoTimetable();
+
   return (
     <div className="main">
       <div className="left_panel">
@@ -73,6 +82,7 @@ const mapDispatchToProps = {
   GoLessons,
   GoTeachers,
   GoClass,
+  GoTimetable,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

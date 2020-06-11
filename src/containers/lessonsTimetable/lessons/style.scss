@@ -1,5 +1,31 @@
-.class_timetable {
-  background-color: royalblue;
+.class_timetable_all {
   width: 100%;
-  margin-left: 10px;
+  .class_timetable_title {
+    text-align: center;
+    p {
+      font-size: xx-large;
+      font-weight: bold;
+    }
+  }
+  .class_timetable_row {
+    display: flex;
+    flex-direction: row;
+    .class_timetable {
+      background-color: rgb(148, 77, 230);
+      width: 100%;
+      height: 85vh;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      overflow-y: scroll;
+    }
+    .class_timetable::-webkit-scrollbar {
+      width: 5px;
+      background-color: white;
+    }
+    .class_timetable::-webkit-scrollbar-thumb {
+      background-color: rgba(148, 77, 230, 0.438);
+    }
+  }
 }

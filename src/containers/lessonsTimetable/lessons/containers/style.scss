@@ -1,0 +1,27 @@
+.day {
+  background-color: white;
+  width: 400px;
+  margin: 5px;
+  padding: 5px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  .name {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 3px solid rgb(148, 77, 230);
+  }
+  .item {
+    margin-top: 7px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    p {
+      margin-bottom: 0;
+      margin-right: 5px;
+    }
+    .lesson {
+      width: 500%;
+    }
+  }
+}

@@ -20,9 +20,9 @@ function Lesson(props) {
   const even = (element) => element == lesson_name;
   useEffect(() => {
     all_class.forEach((element) => {
-      console.log("element.name == class_", element.class_name, class_);
+      // console.log("element.name == class_", element.class_name, class_);
       if (element.class_name == class_) {
-        console.log("12312312312312312312321");
+        // console.log("12312312312312312312321");
         element.lessons.forEach((item) => {
           if (item.name == lesson_name) {
             setteacher(item.teacher);
@@ -32,8 +32,9 @@ function Lesson(props) {
     });
   }, [class_]);
   const changeTeacher = (e) => {
-    console.log(e.target.name);
+    console.log("teacher", teacher);
     if (teacher == "") {
+      console.log("1");
       setteacher(e.target.value);
       ChangeTeacher(
         lesson_name,
